@@ -1,0 +1,92 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a API document for style-admin Service"
+  version: "0.0.2"
+  title: "style-admin-api"
+  contact:
+    email: "originman@bluehack.net"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "api-prod.styleadmin.io"
+basePath: "/"
+tags:
+- name: "models"
+  description: "type of model for magi4"
+schemes:
+- "http"
+paths:
+  /models:
+    post:
+      tags:
+      - "models"
+      summary: ""
+      description: ""
+      operationId: "update_model"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Invalid input"
+      x-swagger-router-controller: "swagger_server.controllers.models_controller"
+  /models/detect/{versionId}:
+    post:
+      tags:
+      - "models"
+      summary: "Query to search multiple objects"
+      description: "update model of service with model's versionId"
+      operationId: "update_model_of_detect"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "versionId"
+        in: "path"
+        description: "model's version"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/pushToRedis"
+        400:
+          description: "Invalid input"
+      x-swagger-router-controller: "swagger_server.controllers.models_controller"
+  /models/feature/{versionId}:
+    post:
+      tags:
+      - "models"
+      summary: "Query to search multiple objects"
+      description: "update model of service with model's versionId"
+      operationId: "update_model_of_feature"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "versionId"
+        in: "path"
+        description: "model's version"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/pushToRedis"
+        400:
+          description: "Invalid input"
+      x-swagger-router-controller: "swagger_server.controllers.models_controller"
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  pushToRedis:
+    type: "object"
+    properties:
+      message:
+        type: "string"
