@@ -1,37 +1,45 @@
 import connexion
-from swagger_server.models.push_to_redis import PushToRedis
-from datetime import date, datetime
-from typing import List, Dict
-from six import iteritems
-from ..util import deserialize_date, deserialize_datetime
-from controller.push import Push
+import six
 
-def update_model():
+from swagger_server.models.update_model_response import UpdateModelResponse  # noqa: E501
+from swagger_server import util
+from controller.models import Model
+
+
+def create_model():  # noqa: E501
     """
+
+    create model # noqa: E501
+
+
     :rtype: None
     """
-    return 'do some magic!'
+    return Model.create_model()
 
 
-def update_model_of_detect(versionId):
+def create_version(type):  # noqa: E501
     """
-    Query to search multiple objects
-    update model of service with model&#39;s versionId
+
+    create version # noqa: E501
+
+    :param type: type of model
+    :type type: str
+
+    :rtype: None
+    """
+    return Model.create_version(type)
+
+
+def update_model(type, versionId):  # noqa: E501
+    """Query to search multiple objects
+
+    update model of service with model&#39;s versionId # noqa: E501
+
+    :param type: model&#39;s type
+    :type type: str
     :param versionId: model&#39;s version
     :type versionId: str
 
-    :rtype: PushToRedis
+    :rtype: UpdateModelResponse
     """
-    return Push.update_model_of_detect(versionId)
-
-
-def update_model_of_feature(versionId):
-    """
-    Query to search multiple objects
-    update model of service with model&#39;s versionId
-    :param versionId: model&#39;s version
-    :type versionId: str
-
-    :rtype: PushToRedis
-    """
-    return 'do some magic!'
+    return Model.update_model(type,versionId)

@@ -1,5 +1,6 @@
 # coding: utf-8
 
+# flake8: noqa
 from __future__ import absolute_import
 # import models into model package
-from .push_to_redis import PushToRedis
+from swagger_server.models.update_model_response import UpdateModelResponse
